@@ -29,8 +29,9 @@
 		//function foe make additions for entered number
 		function makeAddition($inputs){
 			if(strpos($inputs, ",") !== FALSE) {
-				  	$parameters=explode(',', $inputs);
-				  	$sum=array_sum($parameters);
+				  	$parameters = str_replace('\n',',',$inputs);
+				  	$parameters = explode(',', $parameters);
+				  	$sum 		= array_sum($parameters);
 					echo $sum;
 				} else if( is_numeric($inputs))  {
 				 	 echo $inputs;
