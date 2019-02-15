@@ -28,17 +28,36 @@
 	{
 		//function foe make additions for entered number
 		function makeAddition($inputs){
+
 			if(strpos($inputs, ",") !== FALSE || strpos($inputs, ";") !== FALSE) {
 					$parameters = preg_replace('/[^0-9\-]/', ',', $inputs); // Removes special chars.
 					$parameters = str_replace('\n',',',$parameters);
 				  	$parameters = explode(',', $parameters);
-				  	$sum 		= array_sum($parameters);
-					echo $sum;
+
+				  	//check weher user entered negative value
+				  	$isError = $this->checkError($parameters);
+				  	if(empty($isError)){
+				  		$sum 		= array_sum($parameters);
+						echo $sum;
+				  	}else{
+				  		echo 'Negative numbers not allowed.';
+				  	}
+				  
+				  	
 				} else if( is_numeric($inputs))  {
 				 	 echo $inputs;
 			}else{
 				echo'please provide valied inputs';
 			}
+			
+		}
+
+		//function for check negative values 
+		function checkError($parameters){
+			$isError = array_filter($parameters, function($x) {
+			    return $x < 0;
+			});
+			return $isError;
 		}
 		
 	}
