@@ -37,10 +37,17 @@
 				  	//check weher user entered negative value
 				  	$isError = $this->checkError($parameters);
 				  	if(empty($isError)){
-				  		$sum 		= array_sum($parameters);
+				  		$sum = array_sum($parameters);
 						echo $sum;
 				  	}else{
-				  		echo 'Negative numbers not allowed.';
+				  		 
+				  		$errorValues=array();
+				  		
+				  		foreach ($isError as $key => $value) {
+				  		 	array_push($errorValues, $value);				  		 	
+				  		}
+				  		
+				  		echo 'Error: Negative numbers	('.implode(',', $errorValues).') not allowed.'; 
 				  	}
 				  
 				  	
@@ -49,7 +56,7 @@
 			}else{
 				echo'please provide valied inputs';
 			}
-			
+
 		}
 
 		//function for check negative values 
