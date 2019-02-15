@@ -28,8 +28,9 @@
 	{
 		//function foe make additions for entered number
 		function makeAddition($inputs){
-			if(strpos($inputs, ",") !== FALSE) {
-				  	$parameters = str_replace('\n',',',$inputs);
+			if(strpos($inputs, ",") !== FALSE || strpos($inputs, ";") !== FALSE) {
+					$parameters = preg_replace('/[^0-9\-]/', ',', $inputs); // Removes special chars.
+					$parameters = str_replace('\n',',',$parameters);
 				  	$parameters = explode(',', $parameters);
 				  	$sum 		= array_sum($parameters);
 					echo $sum;
